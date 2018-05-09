@@ -1,7 +1,11 @@
 package com.example.admin.android_lab;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listview = (ListView) findViewById(R.id.list);
         listview.setAdapter(this.adapter);
-        Toast.makeText(this,"Kliknięto przycisk Button", Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -45,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
-
+    @Override
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode==1 && resultCode==RESULT_OK)
+        {
+            Bundle extras = data.getExtras();
+            String nowy = (String)extras.get("wpis");
+            target.add(nowy);
+            adapter.notifyDataSetChanged();
+        }
+    }
 
 }
