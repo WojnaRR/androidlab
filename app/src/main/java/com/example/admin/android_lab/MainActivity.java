@@ -13,7 +13,12 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> target;
     private ArrayAdapter adapter;
-
+    public void nowyWpis(MenuItem mi)
+    {
+        Intent intencja = new Intent(this,
+                DodajWpis.class);
+        startActivityForResult(intencja, 1);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,4 +36,15 @@ public class MainActivity extends AppCompatActivity {
         listview.setAdapter(this.adapter);
         Toast.makeText(this,"Kliknięto przycisk Button", Toast.LENGTH_SHORT).show();
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+
 }
